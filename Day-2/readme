@@ -1,0 +1,26 @@
+Explanation
+
+1. sudo
+Runs the command with superuser (root) privileges.
+Creating users requires administrative permissions.
+
+2. useradd
+Linux command used to create a new user account in the system.
+
+3. -e 2026-12-07
+-e means expiry date of the account.
+Here it sets the user account to expire on 7 December 2026.
+After this date, the user cannot log in anymore.
+
+4. james
+This is the username being created.
+Linux usernames are typically lowercase, which matches the task requirement.
+
+In simple words
+
+This command creates a user named james with root permission and sets the account to automatically expire on 7 Dec 2026.
+
+Optional verification command
+sudo chage -l james
+
+This command shows account aging details, including the expiry date.
