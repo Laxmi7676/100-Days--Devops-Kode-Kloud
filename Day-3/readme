@@ -1,0 +1,104 @@
+# Task 4 – Disable Root SSH Login
+
+## Objective
+
+Improve server security by disabling direct root login through SSH on the target server.
+
+## Server Details
+
+* Server: **App Server**
+* Service: **OpenSSH**
+* Configuration File: `/etc/ssh/sshd_config`
+
+## Steps Performed
+
+### 1. Connect to the Target Server
+
+SSH into the required server.
+
+```bash
+ssh banner@stapp03
+```
+
+---
+
+### 2. Edit SSH Configuration File
+
+Open the SSH daemon configuration file using a text editor.
+
+```bash
+sudo vi /etc/ssh/sshd_config
+```
+
+Locate the following line:
+
+```bash
+#PermitRootLogin prohibit-password
+```
+
+Modify it to:
+
+```bash
+PermitRootLogin no
+```
+
+This disables root login through SSH.
+
+---
+
+### 3. Save and Exit
+
+Press:
+
+```
+Esc → :wq → Enter
+```
+
+---
+
+### 4. Restart SSH Service
+
+Restart the SSH service to apply the configuration changes.
+
+```bash
+sudo systemctl restart sshd
+```
+
+---
+
+### 5. Verify the Configuration
+
+Check the configuration to confirm the change.
+
+```bash
+sudo grep PermitRootLogin /etc/ssh/sshd_config
+```
+
+Expected Output:
+
+```
+PermitRootLogin no
+```
+
+---
+
+## Result
+
+Root login via SSH has been successfully disabled, improving the server's security.
+
+---
+
+## Key Linux Commands Used
+
+| Command                  | Description                      |
+| ------------------------ | -------------------------------- |
+| `ssh`                    | Connect to remote server         |
+| `vi`                     | Edit configuration file          |
+| `systemctl restart sshd` | Restart SSH service              |
+| `grep`                   | Search for configuration setting |
+
+---
+
+## Security Benefit
+
+Disabling root SSH login prevents attackers from directly accessing the system using the root account and enforces the use of normal users with privilege escalation (`sudo`).
